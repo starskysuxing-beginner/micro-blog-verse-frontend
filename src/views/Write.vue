@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/Navigation.vue";
 import {getArticleDetail, postArticle, update} from "@/api/Article";
 import {uploadFile} from "@/api/Common";
 

@@ -26,11 +26,12 @@
       <el-divider/>
     </el-header>
     <el-main>
-      <div v-for="(item,index) in comments" class="comments">
+      <!-- <div v-for="(item,index) in comments" class="comments"> -->
+        <div v-for="(item,index) in comments" :key="item.commentId" class="comments">
         <el-row>
           <el-col :span="2">
             <el-image :fit="'cover'" :src=item.avatar style="border-radius: 50%;width: 60px;height: 60px;float: left">
-              <div slot="placeholder" class="image-slot">
+              <div slot:placeholder class="image-slot">
                 加载中<span class="dot">...</span>
               </div>
             </el-image>
@@ -55,13 +56,14 @@
               <el-row>
                 <el-col :class="{'el-icon-like':!item.isLike,'el-icon-liked':item.isLike}"
                         style="width: 14px;height: 14px"
-                        @click.native="likeComment(index)"></el-col>
+                        @click="likeComment(index)"></el-col>
 
                 <span>{{ item.likeNum }}</span></el-row>
             </el-col>
           </el-row>
           <el-row>
-            <div v-for="(i,k) in getReplyByPage(replyPage,5,item.reply)"  class="reply">
+            <!-- <div v-for="(i,k) in getReplyByPage(replyPage,5,item.reply)"  class="reply"> -->
+              <div v-for="(i,k) in getReplyByPage(replyPage,5,item.reply)" :key="i.replyId" class="reply">
               <div style="width: 90%;">
                 <el-divider></el-divider>
               </div>
@@ -69,7 +71,7 @@
                 <el-col :span="1">
                   <el-image :fit="'cover'" :src=i.avatar
                             style="border-radius: 50%;width: 40px;height: 40px;float: left">
-                    <div slot="placeholder" class="image-slot">
+                    <div slot:placeholder class="image-slot">
                       加载中<span class="dot">...</span>
                     </div>
                   </el-image>
@@ -93,7 +95,7 @@
                       <el-row>
                         <el-col :class="{'el-icon-like':!i.isLike,'el-icon-liked':i.isLike}"
                                 style="width: 14px;height: 14px"
-                                @click.native="likeReply(index,k)"></el-col>
+                                @click="likeReply(index,k)"></el-col>
                         <span>{{ i.likeNum }}</span></el-row>
                     </el-col>
                   </el-row>
@@ -152,8 +154,9 @@ height: 70px">
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
 import {getDate} from "@/util/tools";
-import Unfold from "@/components/Unfold";
+import Unfold from "@/components/Unfold.vue";
 import {
   cancelLikeComment,
   cancelLikeReply,
@@ -271,15 +274,15 @@ export default {
           this.comment.id = Number
           this.comment.tempContent = '给作者一个回复吧！'
           console.log(this.comment)
-          this.$notify({
-            title: "Bloggy",
+          ElMessage({
+            title: "MicroBlogVerse[微言博语]",
             message: res.message,
             type: "success",
             duration: 2000
           })
         } else {
-          this.$notify({
-            title: "Bloggy",
+          ElMessage({
+            title: "MicroBlogVerse[微言博语]",
             message: res.message,
             type: "error",
             duration: 1000
@@ -354,11 +357,12 @@ export default {
     window.addEventListener('scroll', this.loadComment);
     window.addEventListener('scroll', this.handleScroll);
   },
-  destroyed() {
-    // 离开页面取消监听
-    window.removeEventListener('scroll', this.loadComment, false);
-    window.removeEventListener('scroll', this.handleScroll, false);
-  }
+  // 离开页面取消监听,以前使用destroyed()，现在改为unmounted()
+  unmounted() {
+  // 离开页面取消监听
+  window.removeEventListener('scroll', this.loadComment, false);
+  window.removeEventListener('scroll', this.handleScroll, false);
+}
 }
 </script>
 

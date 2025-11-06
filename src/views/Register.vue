@@ -28,15 +28,17 @@
             :close-on-click-modal="false"
             :close-on-press-escape="true"
             :show-close="true"
-            :v-model="dialogVisible"
+            v-model:visible="dialogVisible"
             title="验证"
             width="30%">
           <span>验证码已发至您的邮箱，请注意查收</span>
           <el-input v-model="code" placeholder="请输入验证码"></el-input>
-          <span #footer class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="verify">确 定</el-button>
-  </span>
+          <template #footer>
+            <span class="dialog-footer">
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="verify">确 定</el-button>
+            </span>
+          </template>
         </el-dialog>
       </el-form>
 
@@ -53,9 +55,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {register, verify} from "@/api/User";
 
-export default {
+export default defineComponent({
   name: 'Register',
   data() {
     return {
@@ -114,7 +117,7 @@ export default {
       })
     }
   }
-}
+})
 </script>
 
 <style scoped>

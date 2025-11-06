@@ -30,7 +30,7 @@
          </el-card>
          <div id="tag">
            <el-card>
-             <div slot="header" class="clearfix">
+             <div slot:header class="clearfix">
                <el-row>
                  <el-col :span="8" style="margin-top: 10px"><span>最后编辑于:{{ time }}</span></el-col>
                  <el-col :span="16" style="text-align: right;">
@@ -109,10 +109,10 @@
 
 <script>
 import {cancelLikeArticle, getArticleDetail, likeArticle} from "@/api/Article";
-import Navigation from "@/components/Navigation";
-import Unfold from "@/components/Unfold";
+import Navigation from "@/components/Navigation.vue";
+import Unfold from "@/components/Unfold.vue";
 import {getCount, getDate} from "@/util/tools";
-import Comment from "@/components/Comment";
+import Comment from "@/components/Comment.vue";
 import {append, cancelSort, createSort, getByUser} from "@/api/Sort";
 import AuthorIntroduce from "@/components/AuthorIntroduce.vue";
 import RelatedRead from "@/components/RelatedRead.vue";

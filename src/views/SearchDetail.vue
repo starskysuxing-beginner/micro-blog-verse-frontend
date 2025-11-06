@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/Navigation.vue";
 import {fuzzySearch, getByTag} from "@/api/Article";
-import ArticleList from "@/components/ArticleList";
+import ArticleList from "@/components/ArticleList.vue";
 import UserList from "@/components/UserList.vue";
 import {searchUser} from "@/api/User";
 

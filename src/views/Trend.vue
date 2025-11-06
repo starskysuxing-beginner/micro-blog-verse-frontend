@@ -52,7 +52,7 @@
 
 <script>
 import {getAd, getTrend} from "@/api/Common";
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/Navigation.vue";
 
 export default {
   name: "Trend",

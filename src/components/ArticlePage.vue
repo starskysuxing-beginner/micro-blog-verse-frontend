@@ -2,14 +2,14 @@
   <el-container>
     <el-main>
       <div id="content">
-        <article-list :articles="articles"/>
+        <article-list :articles="articles"></article-list>
       </div>
     </el-main>
     <el-footer>
       <div class="block" style="height: 80px;border-top-left-radius: 14px;border-top-right-radius: 14px;
 margin-top: -20px">
         <el-pagination
-            :current-page.sync="currentPage"
+            v-model:current-page="currentPage"
             :page-size="15"
             :total="total"
             background
@@ -25,7 +25,7 @@ margin-top: -20px">
 <script>
 import {getArticlePage} from "@/api/Article";
 import {getDate} from "@/util/tools";
-import ArticleList from "@/components/ArticleList";
+import ArticleList from "@/components/ArticleList.vue";
 
 export default {
   name: "ArticlePage",
@@ -47,7 +47,10 @@ export default {
       getArticlePage(page).then((res) => {
         this.total = res.data.count
         console.log(res.data.articles)
-        this.$set(this, 'articles', res.data.articles)
+        // Vue3 中直接赋值即可，不再使用 this.$set
+        this.articles = res.data.articles
+      }).catch(err=>{
+        console.error(err)
       })
     }
   },

@@ -4,7 +4,7 @@
     <el-card style="width: 80%;margin: 0 auto">
       <el-tabs v-model="active" style="width: 100%">
         <el-tab-pane label="最热" name="hot">
-          <article-page style="width: 100%;margin: 0 auto"/>
+          <article-page style="width: 100%;margin: 0 auto"></article-page>
         </el-tab-pane>
         <el-tab-pane label="推荐" name="refer">推荐</el-tab-pane>
       </el-tabs>

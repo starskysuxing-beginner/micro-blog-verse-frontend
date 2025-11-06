@@ -84,10 +84,10 @@
 </template>
 
 <script>
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/Navigation.vue";
 import {getUserProfile, postProfile} from "@/api/User";
-import UserActive from "@/components/UserActive";
-import UserArticle from "@/components/UserArticle";
+import UserActive from "@/components/UserActive.vue";
+import UserArticle from "@/components/UserArticle.vue";
 import UserSort from "@/components/UserSort.vue";
 
 export default {
